@@ -11,7 +11,7 @@ defmodule IvRomance.Application do
       # Start the Ecto repository
       supervisor(IvRomance.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(IvRomanceWeb.Endpoint, []),
+      supervisor(IvRomanceWeb.Endpoint, [])
       # Start your own worker by calling: IvRomance.Worker.start_link(arg1, arg2, arg3)
       # worker(IvRomance.Worker, [arg1, arg2, arg3]),
     ]

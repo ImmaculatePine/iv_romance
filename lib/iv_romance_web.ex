@@ -28,8 +28,9 @@ defmodule IvRomanceWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/iv_romance_web/templates",
-                        namespace: IvRomanceWeb
+      use Phoenix.View,
+        root: "lib/iv_romance_web/templates",
+        namespace: IvRomanceWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]

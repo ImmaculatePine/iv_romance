@@ -14,8 +14,7 @@ config :iv_romance, IvRomanceWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "0MVEZ1M8y00DNwg0Px3eQOxIS9aEesxzlwTFN040uuXlhIBSreUHkxkv0cOwmMLj",
   render_errors: [view: IvRomanceWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: IvRomance.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: IvRomance.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,4 +23,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
