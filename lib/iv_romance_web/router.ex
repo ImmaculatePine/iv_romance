@@ -17,7 +17,7 @@ defmodule IvRomanceWeb.Router do
     # Use the default browser stack
     pipe_through(:browser)
 
-    get("/", PageController, :index)
+    get("/*path", PageController, :show)
   end
 
   # Other scopes may use custom stacks.
