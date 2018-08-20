@@ -1,0 +1,10 @@
+$navbar-item-img-max-height: 5rem;
+@import 'bulma';
+
+.wrapper {
+  min-height: calc(100vh - 5rem);
+}
+
+.footer {
+  padding: 1.5rem;
+}
