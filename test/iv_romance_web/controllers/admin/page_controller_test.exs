@@ -1,92 +1,119 @@
 defmodule IvRomanceWeb.Admin.PageControllerTest do
   use IvRomanceWeb.ConnCase
 
-  alias IvRomance.Admin.Content
-
-  @create_attrs %{body: "some body", path: "/some-path", title: "some title"}
-  @update_attrs %{
-    body: "some updated body",
-    path: "/some-updated-path",
-    title: "some updated title"
-  }
-  @invalid_attrs %{body: nil, path: nil, title: nil}
-
-  def fixture(:page) do
-    {:ok, page} = Content.create_page(@create_attrs)
-    page
-  end
+  import IvRomance.Factory
 
   describe "index" do
     test "lists all pages", %{conn: conn} do
-      conn = get(conn, admin_page_path(conn, :index))
-      assert html_response(conn, 200) =~ "Pages"
+      pages = insert_list(3, :page)
+
+      response =
+        conn
+        |> get(admin_page_path(conn, :index))
+        |> html_response(200)
+
+      Enum.each(pages, fn %{path: path, title: title} ->
+        assert response =~ path
+        assert response =~ title
+      end)
     end
   end
 
   describe "new page" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, admin_page_path(conn, :new))
-      assert html_response(conn, 200) =~ "New page"
+      response =
+        conn
+        |> get(admin_page_path(conn, :new))
+        |> html_response(200)
+
+      assert response =~ "New page"
     end
   end
 
   describe "create page" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, admin_page_path(conn, :create), page: @create_attrs)
+      %{path: path, title: title, body: body} = params = params_for(:page)
 
-      assert redirected_to(conn) == admin_page_path(conn, :index)
+      assert admin_page_path(conn, :index) ==
+               conn
+               |> post(admin_page_path(conn, :create), page: params)
+               |> redirected_to()
 
-      conn = get(conn, @create_attrs.path)
-      assert html_response(conn, 200) =~ "some body"
+      assert response =
+               conn
+               |> get(path)
+               |> html_response(200)
+
+      assert response =~ title
+      assert response =~ body
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, admin_page_path(conn, :create), page: @invalid_attrs)
-      assert html_response(conn, 200) =~ "New page"
+      assert response =
+               conn
+               |> post(admin_page_path(conn, :create), page: %{})
+               |> html_response(200)
+
+      assert response =~ "New page"
     end
   end
 
   describe "edit page" do
-    setup [:create_page]
+    test "renders form for editing chosen page", %{conn: conn} do
+      page = insert(:page)
 
-    test "renders form for editing chosen page", %{conn: conn, page: page} do
-      conn = get(conn, admin_page_path(conn, :edit, page))
-      assert html_response(conn, 200) =~ "Edit page"
+      assert response =
+               conn
+               |> get(admin_page_path(conn, :edit, page))
+               |> html_response(200)
+
+      assert response =~ "Edit page"
     end
   end
 
   describe "update page" do
-    setup [:create_page]
+    test "redirects to the updated page when data is valid", %{conn: conn} do
+      page = insert(:page)
+      %{path: path, title: title, body: body} = params = params_for(:page)
 
-    test "redirects when data is valid", %{conn: conn, page: page} do
-      conn = put(conn, admin_page_path(conn, :update, page), page: @update_attrs)
-      assert redirected_to(conn) == admin_page_path(conn, :index)
+      assert admin_page_path(conn, :index) ==
+               conn
+               |> put(admin_page_path(conn, :update, page), page: params)
+               |> redirected_to()
 
-      conn = get(conn, @update_attrs.path)
-      assert html_response(conn, 200) =~ "some updated body"
+      assert response =
+               conn
+               |> get(path)
+               |> html_response(200)
+
+      assert response =~ title
+      assert response =~ body
     end
 
-    test "renders errors when data is invalid", %{conn: conn, page: page} do
-      conn = put(conn, admin_page_path(conn, :update, page), page: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Edit page"
+    test "renders errors when data is invalid", %{conn: conn} do
+      page = insert(:page)
+
+      response =
+        conn
+        |> put(admin_page_path(conn, :update, page), page: %{path: ""})
+        |> html_response(200)
+
+      assert response =~ "Edit page"
     end
   end
 
   describe "delete page" do
-    setup [:create_page]
+    test "deletes chosen page", %{conn: conn} do
+      %{path: path} = page = insert(:page)
 
-    test "deletes chosen page", %{conn: conn, page: page} do
-      conn = delete(conn, admin_page_path(conn, :delete, page))
-      assert redirected_to(conn) == admin_page_path(conn, :index)
+      assert admin_page_path(conn, :index) ==
+               conn
+               |> delete(admin_page_path(conn, :delete, page))
+               |> redirected_to()
 
       assert_error_sent(404, fn ->
-        get(conn, page.path)
+        get(conn, path)
       end)
     end
-  end
-
-  defp create_page(_) do
-    page = fixture(:page)
-    {:ok, page: page}
   end
 end
