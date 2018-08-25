@@ -1,1 +1,1 @@
-Current path is <%= @path %>
+<%= @page.body %>

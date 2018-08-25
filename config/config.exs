@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :iv_romance,
-  ecto_repos: [IvRomance.Repo]
+  ecto_repos: [IvRomance.Repo],
+  generators: [binary_id: true]
 
 # Configures the endpoint
 config :iv_romance, IvRomanceWeb.Endpoint,

@@ -1,0 +1,34 @@
+<h1 class="title">Pages</h1>
+
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <%= link "New page", to: admin_page_path(@conn, :new), class: "button is-primary" %>
+    </div>
+  </div>
+</nav>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Path</th>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for page <- @pages do %>
+    <tr>
+      <td><%= page.path %></td>
+      <td><%= page.title %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: page.path, class: "button is-default is-small" %></span>
+        <span><%= link "Edit", to: admin_page_path(@conn, :edit, page), class: "button is-default is-small" %></span>
+        <span><%= link "Delete", to: admin_page_path(@conn, :delete, page), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-small" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

@@ -1,0 +1,37 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="notification is-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label f, :path, class: "label" %>
+    <div class="control">
+      <%= text_input f, :path, class: "input" %>
+      <%= error_tag f, :path %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= label f, :title, class: "label" %>
+    <div class="control">
+      <%= text_input f, :title, class: "input" %>
+      <%= error_tag f, :title %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= label f, :body, class: "label" %>
+    <div class="control">
+      <%= textarea f, :body, class: "textarea" %>
+      <%= error_tag f, :body %>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <%= submit "Submit", class: "button is-link" %>
+    </div>
+  </div>
+<% end %>
