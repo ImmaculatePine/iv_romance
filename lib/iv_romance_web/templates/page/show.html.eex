@@ -1,1 +1,3 @@
-<%= @page.body %>
+<div class="content">
+  <%= sanitize_markdown @page.body %>
+</div>
