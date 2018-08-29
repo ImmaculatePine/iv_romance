@@ -13,13 +13,22 @@ defmodule IvRomanceWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  pipeline :admin_layout do
+  pipeline :auth do
+    plug(:put_layout, {IvRomanceWeb.LayoutView, :auth})
+  end
+
+  pipeline :admin do
     plug(:put_layout, {IvRomanceWeb.LayoutView, :admin})
+    plug(IvRomance.Admin.Auth.Plug)
   end
 
   scope "/admin", IvRomanceWeb.Admin, as: :admin do
-    pipe_through([:browser, :admin_layout])
+    pipe_through([:browser, :auth])
+    resources("/sessions", SessionController, only: [:new, :create, :delete])
+  end
 
+  scope "/admin", IvRomanceWeb.Admin, as: :admin do
+    pipe_through([:browser, :admin, :authenticate_user])
     get("/", PageController, :index, as: :root)
     resources("/pages", PageController, except: [:show])
   end

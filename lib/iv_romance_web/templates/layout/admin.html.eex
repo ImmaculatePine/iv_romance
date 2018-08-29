@@ -16,6 +16,11 @@
           <div class="navbar-start">
             <a class="navbar-item" href="<%= admin_page_path(@conn, :index) %>">Pages</a>
           </div>
+          <div class="navbar-end">
+            <%= if @current_user do %>
+              <%= link "Log out", to: admin_session_path(@conn, :delete, @current_user), class: "navbar-item", method: "delete" %>
+            <% end %>
+          </div>
         </div>
       </nav>
       <section class="section">

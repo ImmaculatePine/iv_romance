@@ -43,6 +43,8 @@ defmodule IvRomance.Mixfile do
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.2"},
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 1.0"},
       {:ex_machina, "~> 2.2", only: :test}
     ]
   end

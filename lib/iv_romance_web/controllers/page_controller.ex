@@ -2,7 +2,6 @@ defmodule IvRomanceWeb.PageController do
   use IvRomanceWeb, :controller
 
   alias IvRomance.Content
-  alias IvRomance.Content.Page
 
   def show(conn, %{"path" => path}) do
     page = find_page!(path)
@@ -13,9 +12,8 @@ defmodule IvRomanceWeb.PageController do
   end
 
   defp find_page!(path) do
-    page =
-      ["" | path]
-      |> Enum.join("/")
-      |> Content.get_page!()
+    ["" | path]
+    |> Enum.join("/")
+    |> Content.get_page!()
   end
 end

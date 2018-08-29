@@ -3,6 +3,11 @@ defmodule IvRomanceWeb.Admin.PageControllerTest do
 
   import IvRomance.Factory
 
+  setup %{conn: conn} do
+    user = insert(:user)
+    {:ok, conn: assign(conn, :current_user, user), user: user}
+  end
+
   describe "index" do
     test "lists all pages", %{conn: conn} do
       pages = insert_list(3, :page)

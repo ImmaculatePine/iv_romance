@@ -49,6 +49,7 @@ defmodule IvRomanceWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import IvRomance.Admin.Auth.Plug, only: [authenticate_user: 2]
     end
   end
 
