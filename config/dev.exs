@@ -56,9 +56,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :iv_romance, IvRomance.Repo,
-  adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
   database: "iv_romance_dev",
-  hostname: "localhost",
-  pool_size: 10
+  hostname: "localhost"

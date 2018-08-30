@@ -21,6 +21,8 @@ config :iv_romance, IvRomanceWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :iv_romance, IvRomanceWeb.Endpoint, secret_key_base: System.get_env("SECRET_KEY_BASE")
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -58,7 +60,3 @@ config :logger, level: :info
 #
 #     config :iv_romance, IvRomanceWeb.Endpoint, server: true
 #
-
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
