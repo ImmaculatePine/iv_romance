@@ -12,8 +12,11 @@ defmodule IvRomanceWeb.PageController do
   end
 
   defp find_page!(path) do
-    ["" | path]
+    path
     |> Enum.join("/")
+    |> prepend_slash()
     |> Content.get_page!()
   end
+
+  defp prepend_slash(path), do: "/" <> path
 end
