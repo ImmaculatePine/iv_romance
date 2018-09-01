@@ -31,14 +31,14 @@
         </div>
         <div class="navbar-menu" id="navMenu">
           <div class="navbar-start">
-            <a class="navbar-item" href="/"><%= gettext("News") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Club") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Articles") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Participants") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Concerts") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Contact") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Photo") %></a>
-            <a class="navbar-item" href="/"><%= gettext("Media") %></a>
+            <a class="navbar-item" href="/news"><%= gettext("News") %></a>
+            <a class="navbar-item" href="/club"><%= gettext("Club") %></a>
+            <a class="navbar-item" href="/articles"><%= gettext("Articles") %></a>
+            <a class="navbar-item" href="/participants"><%= gettext("Participants") %></a>
+            <a class="navbar-item" href="/concerts"><%= gettext("Concerts") %></a>
+            <a class="navbar-item" href="/contact"><%= gettext("Contact") %></a>
+            <a class="navbar-item" href="/photo"><%= gettext("Photo") %></a>
+            <a class="navbar-item" href="/media"><%= gettext("Media") %></a>
           </div>
         </div>
       </nav>
