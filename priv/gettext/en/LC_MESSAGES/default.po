@@ -1,0 +1,64 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:21
+#: lib/iv_romance_web/templates/layout/app.html.eex:54
+#: lib/iv_romance_web/views/layout_view.ex:5
+msgid "Ivanovo Club of Romance Music «By the Candlelight»"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:24
+msgid "By the Candlelight"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:36
+msgid "Articles"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:35
+msgid "Club"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:38
+msgid "Concerts"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:39
+msgid "Contact"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:41
+msgid "Media"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:34
+msgid "News"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:37
+msgid "Participants"
+msgstr ""
+
+#, elixir-format
+#: lib/iv_romance_web/templates/layout/app.html.eex:40
+msgid "Photo"
+msgstr ""

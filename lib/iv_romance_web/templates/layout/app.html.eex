@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><%= title(@conn) %></title>
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+SC:600" rel="stylesheet">
   </head>
 
   <body>
@@ -14,41 +16,42 @@
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src="<%= static_path(@conn, "/images/logo.png") %>" />
+            <img
+              src="<%= static_path(@conn, "/images/logo.png") %>"
+              alt="<%= gettext("Ivanovo Club of Romance Music «By the Candlelight»") %>"
+            />
+          </a>
+          <a class="navbar-item logo is-size-3" href="/"><%= gettext("By the Candlelight") %></a>
+
+          <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </a>
         </div>
-        <div class="navbar-menu">
+        <div class="navbar-menu" id="navMenu">
           <div class="navbar-start">
-            <div class="navbar-item is-size-3">
-              Title title title
-            </div>
-            <div class="navbar-item is-size-4">
-              Title title title
-            </div>
+            <a class="navbar-item" href="/"><%= gettext("News") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Club") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Articles") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Participants") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Concerts") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Contact") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Photo") %></a>
+            <a class="navbar-item" href="/"><%= gettext("Media") %></a>
           </div>
         </div>
       </nav>
       <section class="section">
-        <div class="columns">
-          <div class="column is-one-quarter">
-            <aside class="menu">
-              <ul class="menu-list">
-                <li><a>One</a></li>
-                <li><a>Two</a></li>
-                <li><a>Three</a></li>
-              </ul>
-            </aside>
-          </div>
-          <div class="column">
-            <%= render @view_module, @view_template, assigns %>
-          </div>
+        <div class="container">
+          <%= render @view_module, @view_template, assigns %>
         </div>
       </section>
     </div>
     <footer class="footer">
       <div class="has-text-centered">
         <p>
-          <strong>Footer</strong> and copyrights
+          © <%= copyright_timestamp() %> <%= gettext("Ivanovo Club of Romance Music «By the Candlelight»") %>
         </p>
       </div>
     </footer>

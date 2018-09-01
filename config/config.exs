@@ -17,6 +17,9 @@ config :iv_romance, IvRomanceWeb.Endpoint,
   render_errors: [view: IvRomanceWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: IvRomance.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# Configure default locale
+config :iv_romance, IvRomanceWeb.Gettext, default_locale: "ru"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
