@@ -37,20 +37,18 @@ defmodule IvRomance.UploadsTest do
          }}
       end)
 
-      assert Uploads.list_uploads() ==
-               {:ok,
-                [
-                  "https://s3.eu-central-1.amazonaws.com/iv-romance-uploads-test/uploaded-image.png"
-                ]}
+      assert Uploads.list_uploads() == [
+               "https://s3.eu-central-1.amazonaws.com/iv-romance-uploads-test/uploaded-image.png"
+             ]
     end
 
-    test "returns error on failure" do
+    test "returns empty array on failure" do
       expect(Mock, :request, fn _ -> {:error, :access_denied} end)
-      assert Uploads.list_uploads() == {:error, :access_denied}
+      assert Uploads.list_uploads() == []
     end
   end
 
-  describe "create_upload/1" do
+  describe "create_upload/2" do
     test "returns URL of the uploaded file on success" do
       expect(Mock, :request, fn _ ->
         {:ok,
@@ -61,23 +59,28 @@ defmodule IvRomance.UploadsTest do
          }}
       end)
 
+      file_name = "new-image.png"
       file_path = "test/fixtures/image.png"
 
-      assert {:ok, _} = Uploads.create_upload(file_path)
+      assert Uploads.create_upload(file_name, file_path) ==
+               {:ok,
+                "https://s3.eu-central-1.amazonaws.com/iv-romance-uploads-test/new-image.png"}
     end
 
     test "returns error when file does not exist" do
+      file_name = "new-image.png"
       file_path = "test/fixtures/unknown.png"
 
-      assert Uploads.create_upload(file_path) == {:error, :enoent}
+      assert Uploads.create_upload(file_name, file_path) == {:error, :enoent}
     end
 
     test "returns error on AWS failure" do
       expect(Mock, :request, fn _ -> {:error, :access_denied} end)
 
+      file_name = "new-image.png"
       file_path = "test/fixtures/image.png"
 
-      assert Uploads.create_upload(file_path) == {:error, :access_denied}
+      assert Uploads.create_upload(file_name, file_path) == {:error, :access_denied}
     end
   end
 

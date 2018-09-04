@@ -5,7 +5,7 @@ defmodule IvRomanceWeb.Admin.PageControllerTest do
 
   setup %{conn: conn} do
     user = insert(:user)
-    {:ok, conn: assign(conn, :current_user, user), user: user}
+    {:ok, conn: assign(conn, :current_user, user)}
   end
 
   describe "index" do
@@ -36,7 +36,7 @@ defmodule IvRomanceWeb.Admin.PageControllerTest do
   end
 
   describe "create page" do
-    test "redirects to show when data is valid", %{conn: conn} do
+    test "redirects to index when data is valid", %{conn: conn} do
       %{path: path, title: title, body: body} = params = params_for(:page)
 
       assert admin_page_path(conn, :index) ==

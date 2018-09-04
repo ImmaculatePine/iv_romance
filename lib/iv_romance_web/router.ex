@@ -31,6 +31,7 @@ defmodule IvRomanceWeb.Router do
     pipe_through([:browser, :admin, :authenticate_user])
     get("/", PageController, :index, as: :root)
     resources("/pages", PageController, except: [:show])
+    resources("/uploads", UploadController, only: [:index, :create, :delete])
   end
 
   scope "/", IvRomanceWeb do
