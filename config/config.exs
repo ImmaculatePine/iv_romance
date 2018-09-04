@@ -20,15 +20,26 @@ config :iv_romance, IvRomanceWeb.Endpoint,
 # Configure default locale
 config :iv_romance, IvRomanceWeb.Gettext, default_locale: "ru"
 
+# Configure your database
+config :iv_romance, IvRomance.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+
+# Configure uploader
+config :iv_romance, IvRomance.Uploads.S3,
+  bucket: System.get_env("UPLOADS_S3_BUCKET"),
+  adapter: IvRomance.Uploads.S3.Adapter.Aws
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
-# Configure your database
-config :iv_romance, IvRomance.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+# Configure AWS
+config :ex_aws,
+  access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
+  secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
+  region: "eu-central-1"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

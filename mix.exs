@@ -45,7 +45,12 @@ defmodule IvRomance.Mixfile do
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:ex_machina, "~> 2.2", only: :test}
+      {:ex_aws, "~> 2.0"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:hackney, "~> 1.9"},
+      {:sweet_xml, "~> 0.6"},
+      {:ex_machina, "~> 2.2", only: :test},
+      {:mox, "~> 0.4", only: :test}
     ]
   end
 

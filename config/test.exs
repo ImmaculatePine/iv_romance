@@ -17,4 +17,9 @@ config :iv_romance, IvRomance.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
+# Configure uploader
+config :iv_romance, IvRomance.Uploads.S3,
+  bucket: "iv-romance-uploads-test",
+  adapter: IvRomance.Uploads.S3.Adapter.Mock
+
 config :bcrypt_elixir, log_rounds: 4
