@@ -41,6 +41,12 @@ config :ex_aws,
   secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
   region: "eu-central-1"
 
+# Configure Arc uploader
+config :arc,
+  storage: Arc.Storage.S3,
+  virtual_host: true,
+  bucket: System.get_env("UPLOADS_S3_BUCKET")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

@@ -49,6 +49,7 @@ defmodule IvRomance.Mixfile do
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
+      {:arc, "~> 0.10.0"},
       {:ex_machina, "~> 2.2", only: :test},
       {:mox, "~> 0.4", only: :test}
     ]

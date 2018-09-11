@@ -17,7 +17,7 @@ defmodule IvRomanceWeb.Admin.UploadController do
 
       {:error, _} ->
         conn
-        |> put_flash(:error, "Filed to upload file.")
+        |> put_flash(:error, "Failed to upload file.")
         |> redirect(to: admin_upload_path(conn, :index))
     end
   end

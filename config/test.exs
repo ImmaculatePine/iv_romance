@@ -22,4 +22,8 @@ config :iv_romance, IvRomance.Uploads.S3,
   bucket: "iv-romance-uploads-test",
   adapter: IvRomance.Uploads.S3.Adapter.Mock
 
+# Configure Arc uploader
+config :arc, storage: Arc.Storage.Local, bucket: "iv-romance-uploads-test"
+
+# Reduce the number of encryption rounds
 config :bcrypt_elixir, log_rounds: 4

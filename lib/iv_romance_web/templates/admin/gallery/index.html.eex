@@ -1,0 +1,32 @@
+<h1 class="title">Galleries</h1>
+
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <%= link "New gallery", to: admin_gallery_path(@conn, :new), class: "button is-primary" %>
+    </div>
+  </div>
+</nav>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for gallery <- @galleries do %>
+    <tr>
+      <td><%= gallery.title %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: admin_gallery_image_path(@conn, :index, gallery), class: "button is-default is-small" %></span>
+        <span><%= link "Edit", to: admin_gallery_path(@conn, :edit, gallery), class: "button is-default is-small" %></span>
+        <span><%= link "Delete", to: admin_gallery_path(@conn, :delete, gallery), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-small" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

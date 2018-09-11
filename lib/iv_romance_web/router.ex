@@ -32,6 +32,10 @@ defmodule IvRomanceWeb.Router do
     get("/", PageController, :index, as: :root)
     resources("/pages", PageController, except: [:show])
     resources("/uploads", UploadController, only: [:index, :create, :delete])
+
+    resources("/galleries", GalleryController, except: [:show]) do
+      resources("/images", ImageController, only: [:index, :create, :delete])
+    end
   end
 
   scope "/", IvRomanceWeb do
