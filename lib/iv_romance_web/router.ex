@@ -41,6 +41,8 @@ defmodule IvRomanceWeb.Router do
   scope "/", IvRomanceWeb do
     pipe_through(:browser)
 
+    resources("/photo", GalleryController, only: [:index, :show])
+
     get("/*path", PageController, :show)
   end
 end

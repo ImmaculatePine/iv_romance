@@ -1,7 +1,7 @@
 defmodule IvRomanceWeb.Admin.ImageView do
   use IvRomanceWeb, :view
 
-  alias IvRomance.Galleries.{Image, Upload}
+  alias IvRomanceWeb.GalleryView
 
-  def thumb_url(%Image{filename: filename} = image), do: Upload.url({filename, image}, :thumb)
+  defdelegate thumb_url(image), to: GalleryView
 end

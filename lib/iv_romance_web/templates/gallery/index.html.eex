@@ -1,0 +1,13 @@
+<h1 class="title"><%= gettext("Photo") %></h1>
+
+<div class="content">
+  <ul>
+    <%= for gallery <- @galleries do %>
+      <li>
+        <a href="<%= gallery_path(@conn, :show, gallery) %>">
+          <%= gallery.title %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
