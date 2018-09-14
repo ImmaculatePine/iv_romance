@@ -1,7 +1,7 @@
-defmodule IvRomance.Galleries.UploadTest do
+defmodule IvRomance.Photo.UploadTest do
   use IvRomance.DataCase
 
-  alias IvRomance.Galleries.Upload
+  alias IvRomance.Photo.Upload
 
   describe "validate/1" do
     test "returns true for allowed extensions" do

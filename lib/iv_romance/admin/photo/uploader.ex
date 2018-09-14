@@ -1,8 +1,8 @@
-defmodule IvRomance.Admin.Galleries.Uploader do
+defmodule IvRomance.Admin.Photo.Uploader do
   import Ecto.Query, warn: false
 
   alias IvRomance.Repo
-  alias IvRomance.Galleries.{Image, Upload}
+  alias IvRomance.Photo.{Image, Upload}
 
   def upload_image(gallery_id, %Plug.Upload{} = upload) do
     with {:ok, image} <- create_record(%{gallery_id: gallery_id}),

@@ -1,8 +1,8 @@
-defmodule IvRomance.Galleries.Gallery do
+defmodule IvRomance.Photo.Gallery do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias IvRomance.Galleries.Image
+  alias IvRomance.Photo.Image
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

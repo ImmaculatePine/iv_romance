@@ -1,9 +1,9 @@
-defmodule IvRomance.Admin.Galleries do
+defmodule IvRomance.Admin.Photo do
   import Ecto.Query, warn: false
 
   alias IvRomance.Repo
-  alias IvRomance.Admin.Galleries.Uploader
-  alias IvRomance.Galleries.{Gallery, Image}
+  alias IvRomance.Admin.Photo.Uploader
+  alias IvRomance.Photo.{Gallery, Image}
 
   def list_galleries, do: Repo.all(Gallery)
 

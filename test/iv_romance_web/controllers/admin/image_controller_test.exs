@@ -4,7 +4,7 @@ defmodule IvRomanceWeb.Admin.ImageControllerTest do
   import IvRomance.Factory
 
   alias Ecto.UUID
-  alias IvRomance.Admin.Galleries
+  alias IvRomance.Admin.Photo
 
   setup %{conn: conn} do
     on_exit(fn ->
@@ -86,7 +86,7 @@ defmodule IvRomanceWeb.Admin.ImageControllerTest do
                |> post(admin_gallery_image_path(conn, :create, gallery), image: params)
                |> redirected_to()
 
-      [%{id: id}] = [image] = Galleries.list_images(gallery.id)
+      [%{id: id}] = [image] = Photo.list_images(gallery.id)
 
       assert admin_gallery_image_path(conn, :index, gallery) ==
                conn

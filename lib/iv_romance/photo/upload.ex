@@ -1,4 +1,4 @@
-defmodule IvRomance.Galleries.Upload do
+defmodule IvRomance.Photo.Upload do
   use Arc.Definition
 
   @versions [:original, :thumb]
