@@ -15,17 +15,4 @@ import 'phoenix_html'
 
 // Import local files
 import './navbar'
-import Masonry from 'masonry-layout'
-import imagesLoaded from 'imagesloaded'
-
-const grid = document.querySelector('.grid')
-
-if (grid) {
-  imagesLoaded(grid, () => {
-    new Masonry(grid, {
-      itemSelector: '.grid-item',
-      columnWidth: 250,
-      gutter: 10
-    })
-  })
-}
+import './photo'

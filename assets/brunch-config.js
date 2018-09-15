@@ -3,8 +3,8 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: {
-        "js/app.js": /^js\/app|node_modules/,
-        "js/admin.js": /^js\/admin|node_modules/
+        'js/app.js': /^js\/app|node_modules/,
+        'js/admin.js': /^js\/admin|node_modules/
       }
 
       // To change the order of concatenation of files, explicitly mention here
@@ -17,8 +17,8 @@ exports.config = {
     },
     stylesheets: {
       joinTo: {
-        "css/app.css": /^css\/app/,
-        "css/admin.css": /^css\/admin/
+        'css/app.css': /^css\/app/,
+        'css/admin.css': /^css\/admin/
       }
     },
     templates: {
@@ -52,15 +52,19 @@ exports.config = {
     },
     sass: {
       options: {
-        includePaths: ['node_modules/bulma', 'node_modules/font-awesome/scss']
+        includePaths: [
+          'node_modules/bulma',
+          'node_modules/font-awesome/scss',
+          'node_modules/simple-lightbox/dist'
+        ]
       }
     }
   },
 
   modules: {
     autoRequire: {
-      "js/app.js": ["js/app/app"],
-      "js/admin.js": ["js/admin/admin"]
+      'js/app.js': ['js/app/app'],
+      'js/admin.js': ['js/admin/admin']
     }
   },
 
