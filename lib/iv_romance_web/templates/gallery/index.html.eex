@@ -5,7 +5,7 @@
     <div class="tile is-ancestor">
       <%= for gallery <- chunk do %>
         <div class="tile is-parent">
-          <a href="<%= gallery_url(@conn, :show, gallery) %>" class="tile is-child box">
+          <a href="<%= gallery_path(@conn, :show, gallery) %>" class="tile is-child box">
             <p class="title"><%= gallery.title %></p>
 
             <%= if has_subtitle?(gallery) do %>
