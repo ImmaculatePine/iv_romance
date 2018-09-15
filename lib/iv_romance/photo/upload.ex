@@ -8,6 +8,10 @@ defmodule IvRomance.Photo.Upload do
     Enum.member?(@extensions, file_name |> String.downcase() |> Path.extname())
   end
 
+  def transform(:original, _) do
+    {:convert, "-strip -resize 1000>"}
+  end
+
   def transform(:thumb, _) do
     {:convert, "-strip -thumbnail 250 -gravity center"}
   end
