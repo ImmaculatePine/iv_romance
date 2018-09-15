@@ -36,8 +36,8 @@ defmodule IvRomanceWeb.GalleryControllerTest do
 
       Enum.each(images, fn %{id: id} = image ->
         assert response =~ id
-        assert response =~ GalleryView.thumb_url(image)
-        assert response =~ GalleryView.original_url(image)
+        assert response =~ GalleryView.upload_url(image, :original)
+        assert response =~ GalleryView.upload_url(image, :thumb)
       end)
     end
 

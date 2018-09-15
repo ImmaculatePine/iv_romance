@@ -9,6 +9,7 @@ defmodule IvRomance.Photo.Gallery do
 
   schema "galleries" do
     field(:title, :string)
+    field(:subtitle, :string)
 
     has_many(:images, Image, on_delete: :delete_all)
 
@@ -18,7 +19,7 @@ defmodule IvRomance.Photo.Gallery do
   @doc false
   def changeset(gallery, attrs) do
     gallery
-    |> cast(attrs, [:title])
+    |> cast(attrs, [:title, :subtitle])
     |> validate_required([:title])
   end
 end

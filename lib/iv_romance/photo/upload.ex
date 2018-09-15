@@ -13,7 +13,7 @@ defmodule IvRomance.Photo.Upload do
   end
 
   def transform(:thumb, _) do
-    {:convert, "-strip -thumbnail 250 -gravity center"}
+    {:convert, "-strip -thumbnail 250"}
   end
 
   def filename(version, {_file, _scope}), do: version

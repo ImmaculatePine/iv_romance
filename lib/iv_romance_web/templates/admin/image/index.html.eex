@@ -20,7 +20,7 @@
 <%= for image <- @images do %>
     <tr>
       <td>
-        <img src="<%= thumb_url(image) %>" />
+        <img src="<%= upload_url(image, :thumb) %>" />
       </td>
 
       <td class="text-right">

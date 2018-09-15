@@ -13,6 +13,14 @@
     </div>
   </div>
 
+  <div class="field">
+    <%= label f, :subtitle, class: "label" %>
+    <div class="control">
+      <%= text_input f, :subtitle, class: "input" %>
+      <%= error_tag f, :subtitle %>
+    </div>
+  </div>
+
   <div class="field is-grouped">
     <div class="control">
       <%= submit "Submit", class: "button is-link" %>

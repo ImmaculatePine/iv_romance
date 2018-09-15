@@ -15,7 +15,8 @@ defmodule IvRomance.Factory do
 
   def gallery_factory do
     %Gallery{
-      title: sequence(:title, &"Gallery #{&1}")
+      title: sequence(:title, &"Gallery #{&1}"),
+      subtitle: sequence(:subtitle, &"Subtitle #{&1}")
     }
   end
 

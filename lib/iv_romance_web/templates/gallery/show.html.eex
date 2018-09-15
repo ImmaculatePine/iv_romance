@@ -2,8 +2,8 @@
 
 <div class="grid">
   <%= for image <- @images do %>
-    <a href="<%= original_url(image) %>" class="grid-item">
-      <img src="<%= thumb_url(image) %>" />
+    <a href="<%= upload_url(image, :original) %>" class="grid-item">
+      <img src="<%= upload_url(image, :thumb) %>" />
     </a>
   <% end %>  
 </div>

@@ -1,10 +1,15 @@
 defmodule IvRomanceWeb.GalleryView do
   use IvRomanceWeb, :view
 
-  alias IvRomance.Photo.{Image, Upload}
+  alias IvRomance.Photo.{Gallery, Image, Upload}
 
-  def thumb_url(%Image{filename: filename} = image), do: Upload.url({filename, image}, :thumb)
+  def chunks(galleries), do: Enum.chunk_every(galleries, 2)
 
-  def original_url(%Image{filename: filename} = image),
-    do: Upload.url({filename, image}, :original)
+  def has_subtitle?(%Gallery{subtitle: nil}), do: false
+  def has_subtitle?(%Gallery{subtitle: ""}), do: false
+  def has_subtitle?(%Gallery{subtitle: _}), do: true
+
+  def upload_url(%Image{filename: filename} = image, version) do
+    Upload.url({filename, image}, version)
+  end
 end
