@@ -9,6 +9,7 @@ defmodule IvRomance.Photo.Image do
 
   schema "images" do
     field(:filename, :string)
+    field(:position, :integer)
 
     belongs_to(:gallery, Gallery)
 
@@ -18,8 +19,8 @@ defmodule IvRomance.Photo.Image do
   @doc false
   def changeset(image, attrs) do
     image
-    |> cast(attrs, [:gallery_id, :filename])
-    |> validate_required([:gallery_id])
+    |> cast(attrs, [:gallery_id, :filename, :position])
+    |> validate_required([:gallery_id, :position])
     |> foreign_key_constraint(:gallery_id)
   end
 end

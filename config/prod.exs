@@ -21,7 +21,13 @@ config :iv_romance, IvRomanceWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+# Configures the endpoint
 config :iv_romance, IvRomanceWeb.Endpoint, secret_key_base: System.get_env("SECRET_KEY_BASE")
+
+# Configure auth token
+config :iv_romance, IvRomance.Admin.Auth.Token,
+  secret: System.get_env("AUTH_TOKEN_SECRET"),
+  salt: System.get_env("AUTH_TOKEN_SALT")
 
 # ## SSL Support
 #

@@ -4,13 +4,15 @@ defmodule IvRomance.Admin.Auth.PlugTest do
   import IvRomance.Factory
   import IvRomanceWeb.LogInHelper
 
+  alias Ecto.UUID
   alias IvRomance.Admin.Auth
+  alias IvRomance.Admin.Auth.Token
   alias IvRomance.Admin.Auth.Plug, as: AuthPlug
 
-  describe "call/2" do
+  describe "call/2, source: :session" do
     test "does nothing when user is already assigned", %{conn: conn} do
       conn_with_user = assign(conn, :current_user, insert(:user))
-      assert conn_with_user == AuthPlug.call(conn_with_user, %{})
+      assert conn_with_user == AuthPlug.call(conn_with_user, source: :session)
     end
 
     test "assigns user if there is real user id in session", %{conn: conn} do
@@ -23,7 +25,7 @@ defmodule IvRomance.Admin.Auth.PlugTest do
                    email: ^email
                  }
                }
-             } = AuthPlug.call(conn, %{})
+             } = AuthPlug.call(conn, source: :session)
     end
 
     test "assigns nil if there is no real user id in session", %{conn: conn} do
@@ -34,7 +36,45 @@ defmodule IvRomance.Admin.Auth.PlugTest do
                assigns: %{
                  current_user: nil
                }
-             } = AuthPlug.call(conn, %{})
+             } = AuthPlug.call(conn, source: :session)
+    end
+  end
+
+  describe "call/2, source: :auth_header" do
+    test "does nothing when user is already assigned", %{conn: conn} do
+      conn_with_user = assign(conn, :current_user, insert(:user))
+
+      assert conn_with_user == AuthPlug.call(conn_with_user, source: :auth_header)
+    end
+
+    test "assigns user if there is real user token in auth header", %{conn: conn} do
+      %{id: user_id, email: email} = insert(:user)
+      token = Token.sign(user_id)
+
+      assert %{
+               assigns: %{
+                 current_user: %{
+                   id: ^user_id,
+                   email: ^email
+                 }
+               }
+             } =
+               conn
+               |> put_req_header("authorization", "Bearer #{token}")
+               |> AuthPlug.call(source: :auth_header)
+    end
+
+    test "assigns nil if there is no real user token in session", %{conn: conn} do
+      token = Token.sign(UUID.generate())
+
+      assert %{
+               assigns: %{
+                 current_user: nil
+               }
+             } =
+               conn
+               |> put_req_header("authorization", "Bearer #{token}")
+               |> AuthPlug.call(source: :auth_header)
     end
   end
 

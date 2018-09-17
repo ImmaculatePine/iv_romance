@@ -11,6 +11,8 @@ defmodule IvRomanceWeb.Router do
 
   pipeline :api do
     plug(:accepts, ["json"])
+    plug(IvRomanceWeb.Plugs.AcceptHeader)
+    plug(IvRomance.Admin.Auth.Plug, source: :auth_header)
   end
 
   pipeline :auth do
@@ -34,6 +36,14 @@ defmodule IvRomanceWeb.Router do
     resources("/uploads", UploadController, only: [:index, :create, :delete])
 
     resources("/galleries", GalleryController, except: [:show]) do
+      resources("/images", ImageController, only: [:index])
+    end
+  end
+
+  scope "/api/admin", IvRomanceWeb.Admin, as: :api_admin do
+    pipe_through([:api, :authenticate_user])
+
+    resources("/galleries", GalleryController, only: []) do
       resources("/images", ImageController, only: [:index, :create, :delete])
     end
   end

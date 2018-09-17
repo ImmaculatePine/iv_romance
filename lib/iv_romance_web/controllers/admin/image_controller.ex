@@ -2,34 +2,42 @@ defmodule IvRomanceWeb.Admin.ImageController do
   use IvRomanceWeb, :controller
 
   alias IvRomance.Admin.Photo
+  alias IvRomance.Admin.Auth.Token
+  alias IvRomance.Photo.Image
 
-  def index(conn, %{"gallery_id" => gallery_id}) do
-    gallery = Photo.get_gallery!(gallery_id)
+  action_fallback(IvRomanceWeb.FallbackController)
+
+  def index(%{assigns: %{accept: ["application/json"]}} = conn, %{"gallery_id" => gallery_id}) do
+    Photo.get_gallery!(gallery_id)
     images = Photo.list_images(gallery_id)
-
-    render(conn, "index.html", gallery: gallery, images: images)
+    render(conn, "index.json", images: images)
   end
 
-  def create(conn, %{"gallery_id" => gallery_id, "image" => %{"file" => %Plug.Upload{} = file}}) do
-    case Photo.upload_image(gallery_id, file) do
-      {:ok, _image} ->
-        conn
-        |> put_flash(:info, "Image uploaded successfully.")
-        |> redirect(to: admin_gallery_image_path(conn, :index, gallery_id))
+  def index(%{assigns: %{current_user: %{id: user_id}}} = conn, %{"gallery_id" => gallery_id}) do
+    gallery = Photo.get_gallery!(gallery_id)
 
-      {:error, _} ->
-        conn
-        |> put_flash(:error, "Failed to upload image.")
-        |> redirect(to: admin_gallery_image_path(conn, :index, gallery_id))
+    render(conn, "index.html", gallery: gallery, token: Token.sign(user_id))
+  end
+
+  def create(%{assigns: %{accept: ["application/json"]}} = conn, %{
+        "gallery_id" => gallery_id,
+        "image" => %{"file" => file, "position" => position}
+      }) do
+    with {:ok, %Image{} = image} <-
+           Photo.upload_image(%{gallery_id: gallery_id, file: file, position: position}) do
+      conn
+      |> put_status(:created)
+      |> render("image.json", image: image)
     end
   end
 
-  def delete(conn, %{"gallery_id" => gallery_id, "id" => id}) do
+  def delete(%{assigns: %{accept: ["application/json"]}} = conn, %{
+        "id" => id
+      }) do
     image = Photo.get_image!(id)
-    {:ok, _image} = Photo.delete_image(image)
 
-    conn
-    |> put_flash(:info, "Image deleted successfully.")
-    |> redirect(to: admin_gallery_image_path(conn, :index, gallery_id))
+    with {:ok, %Image{}} <- Photo.delete_image(image) do
+      send_resp(conn, :no_content, "")
+    end
   end
 end

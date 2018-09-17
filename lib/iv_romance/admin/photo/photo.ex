@@ -25,11 +25,12 @@ defmodule IvRomance.Admin.Photo do
 
   def change_gallery(%Gallery{} = gallery), do: Gallery.changeset(gallery, %{})
 
-  def list_images(gallery_id), do: Repo.all(from(Image, where: [gallery_id: ^gallery_id]))
+  def list_images(gallery_id),
+    do: Repo.all(from(Image, where: [gallery_id: ^gallery_id], order_by: [asc: :position]))
 
   def get_image!(id), do: Repo.one!(from(Image, where: [id: ^id]))
 
-  defdelegate upload_image(gallery_id, upload), to: Uploader
+  defdelegate upload_image(attrs), to: Uploader
 
   defdelegate delete_image(image), to: Uploader
 end

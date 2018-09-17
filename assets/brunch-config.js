@@ -45,7 +45,9 @@ exports.config = {
   plugins: {
     babel: {
       // Do not use ES6 compiler in vendor code
-      ignore: [/vendor/]
+      ignore: [/vendor/],
+      presets: ['env', 'react'],
+      plugins: ['transform-class-properties']
     },
     copycat: {
       fonts: ['node_modules/font-awesome/fonts']

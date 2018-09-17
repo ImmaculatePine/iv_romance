@@ -4,9 +4,9 @@ defmodule IvRomance.Admin.Photo.Uploader do
   alias IvRomance.Repo
   alias IvRomance.Photo.{Image, Upload}
 
-  def upload_image(gallery_id, %Plug.Upload{} = upload) do
-    with {:ok, image} <- create_record(%{gallery_id: gallery_id}),
-         {:ok, filename} <- store_file(upload, image),
+  def upload_image(attrs) do
+    with {:ok, image} <- create_record(attrs),
+         {:ok, filename} <- store_file(attrs, image),
          {:ok, image} <- set_filename(image, filename) do
       {:ok, image}
     else
@@ -38,8 +38,8 @@ defmodule IvRomance.Admin.Photo.Uploader do
     |> maybe_wrap_error(:create_record)
   end
 
-  defp store_file(upload, image) do
-    {upload, image}
+  defp store_file(%{file: %Plug.Upload{} = file}, image) do
+    {file, image}
     |> Upload.store()
     |> maybe_wrap_error({:store_file, image})
   end

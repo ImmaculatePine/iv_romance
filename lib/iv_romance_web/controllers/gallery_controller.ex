@@ -9,7 +9,8 @@ defmodule IvRomanceWeb.GalleryController do
   end
 
   def show(conn, %{"id" => id}) do
-    %{images: images} = gallery = Photo.get_gallery!(id)
+    gallery = Photo.get_gallery!(id)
+    images = Photo.list_images(id)
     render(conn, "show.html", gallery: gallery, images: images)
   end
 end

@@ -23,7 +23,9 @@ defmodule IvRomance.Admin.Photo.UploaderTest do
       gallery: %{id: gallery_id},
       upload: upload
     } do
-      assert {:ok, image} = Photo.upload_image(gallery_id, upload)
+      assert {:ok, image} =
+               Photo.upload_image(%{gallery_id: gallery_id, position: 1, file: upload})
+
       assert %Image{id: id, filename: "image.png", gallery_id: ^gallery_id} = image
       assert File.exists?("uploads/images/#{id}/original.png")
       assert File.exists?("uploads/images/#{id}/thumb.png")
@@ -32,7 +34,9 @@ defmodule IvRomance.Admin.Photo.UploaderTest do
     test "returns validation error when %Image{} was not created", %{upload: upload} do
       gallery_id = UUID.generate()
 
-      assert {:error, error} = Photo.upload_image(gallery_id, upload)
+      assert {:error, error} =
+               Photo.upload_image(%{gallery_id: gallery_id, position: 1, file: upload})
+
       assert %{errors: [gallery_id: {"does not exist", []}]} = error
     end
 
@@ -42,14 +46,18 @@ defmodule IvRomance.Admin.Photo.UploaderTest do
       upload = %Plug.Upload{filename: "image.png", path: "test/fixtures/not-existing.png"}
       images_count = Repo.aggregate(Image, :count, :id)
 
-      assert {:error, :invalid_file_path} = Photo.upload_image(gallery_id, upload)
+      assert {:error, :invalid_file_path} =
+               Photo.upload_image(%{gallery_id: gallery_id, position: 1, file: upload})
+
       assert Repo.aggregate(Image, :count, :id) == images_count
     end
   end
 
   describe "delete_image/1" do
     test "removes both files and database record", %{gallery: %{id: gallery_id}, upload: upload} do
-      assert {:ok, %{id: id} = image} = Photo.upload_image(gallery_id, upload)
+      assert {:ok, %{id: id} = image} =
+               Photo.upload_image(%{gallery_id: gallery_id, position: 1, file: upload})
+
       assert {:ok, %Image{id: ^id}} = Photo.delete_image(image)
       assert_raise NoResultsError, fn -> Photo.get_image!(id) end
       refute File.exists?("uploads/images/#{id}/original.png")

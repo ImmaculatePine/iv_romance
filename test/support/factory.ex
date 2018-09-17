@@ -23,7 +23,8 @@ defmodule IvRomance.Factory do
   def image_factory do
     %Image{
       gallery: build(:gallery),
-      filename: sequence(:filename, &"image-#{&1}.png")
+      filename: sequence(:filename, &"image-#{&1}.png"),
+      position: sequence(:position, & &1)
     }
   end
 

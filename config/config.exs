@@ -10,12 +10,17 @@ config :iv_romance,
   ecto_repos: [IvRomance.Repo],
   generators: [binary_id: true]
 
-# Configures the endpoint
+# Configure the endpoint
 config :iv_romance, IvRomanceWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "0MVEZ1M8y00DNwg0Px3eQOxIS9aEesxzlwTFN040uuXlhIBSreUHkxkv0cOwmMLj",
   render_errors: [view: IvRomanceWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: IvRomance.PubSub, adapter: Phoenix.PubSub.PG2]
+
+# Configure auth token
+config :iv_romance, IvRomance.Admin.Auth.Token,
+  secret: "60k0SK/TimOwnuLW2vZ9ihrkVjtOeDCEQ1WAFk+soS41B/tf04oTYm4e3+PV4LZV",
+  salt: "3Q2oQsIYY31y2Pd7DGICPg8sGHjKL3C/qkfZ1gVsMy9018+D3GmwWG6csPq6my6I"
 
 # Configure default locale
 config :iv_romance, IvRomanceWeb.Gettext, default_locale: "ru"

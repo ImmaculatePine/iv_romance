@@ -1,11 +1,32 @@
-defmodule IvRomance.Admin.Photo.ImagesTest do
+defmodule IvRomance.PhotoTest do
   use IvRomance.DataCase
 
   import IvRomance.Factory
 
-  alias IvRomance.Photo.Image
-  alias IvRomance.Admin.Photo
-  alias Ecto.{NoResultsError, UUID}
+  alias IvRomance.Photo
+  alias Ecto.{UUID, NoResultsError}
+
+  describe "list_galleries/0" do
+    test "returns empty list when there are no galleries" do
+      assert Photo.list_galleries() == []
+    end
+
+    test "returns existing galleries" do
+      gallery = insert(:gallery)
+      assert Photo.list_galleries() == [gallery]
+    end
+  end
+
+  describe "get_gallery!/1" do
+    test "returns the gallery with given id" do
+      %{id: id} = gallery = insert(:gallery)
+      assert Photo.get_gallery!(id) == gallery
+    end
+
+    test "raises NoResultsError when gallery does not exist" do
+      assert_raise NoResultsError, fn -> Photo.get_gallery!(UUID.generate()) end
+    end
+  end
 
   describe "list_images/1" do
     test "returns empty list when there is no gallery with such id" do
@@ -27,18 +48,6 @@ defmodule IvRomance.Admin.Photo.ImagesTest do
 
       assert [%{id: ^id_1, filename: ^filename_1}, %{id: ^id_2, filename: ^filename_2}] =
                Photo.list_images(gallery_id)
-    end
-  end
-
-  describe "get_image!/1" do
-    test "returns the image with given id" do
-      %{id: id, filename: filename, gallery_id: gallery_id} = insert(:image)
-
-      assert %Image{id: ^id, filename: ^filename, gallery_id: ^gallery_id} = Photo.get_image!(id)
-    end
-
-    test "raises NoResultsError when image does not exist" do
-      assert_raise NoResultsError, fn -> Photo.get_image!(UUID.generate()) end
     end
   end
 end
