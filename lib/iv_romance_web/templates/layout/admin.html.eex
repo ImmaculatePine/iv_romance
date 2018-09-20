@@ -17,6 +17,7 @@
             <a class="navbar-item" href="<%= admin_page_path(@conn, :index) %>">Pages</a>
             <a class="navbar-item" href="<%= admin_upload_path(@conn, :index) %>">Uploads</a>
             <a class="navbar-item" href="<%= admin_gallery_path(@conn, :index) %>">Galleries</a>
+            <a class="navbar-item" href="<%= admin_media_object_path(@conn, :index) %>">Media</a>
           </div>
           <div class="navbar-end">
             <%= if @current_user do %>

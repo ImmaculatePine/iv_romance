@@ -1,0 +1,37 @@
+<h1 class="title">Media</h1>
+
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <%= link "New media", to: admin_media_object_path(@conn, :new), class: "button is-primary" %>
+    </div>
+  </div>
+</nav>
+
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>Type</th>
+      <th>Descriptor</th>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for media_object <- @media_objects do %>
+    <tr>
+      <td><%= media_object.provider %></td>
+      <td><%= media_object.type %></td>
+      <td><%= media_object.descriptor %></td>
+      <td><%= media_object.title %></td>
+
+      <td class="text-right">
+        <span><%= link "Edit", to: admin_media_object_path(@conn, :edit, media_object), class: "button is-default is-small" %></span>
+        <span><%= link "Delete", to: admin_media_object_path(@conn, :delete, media_object), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-small" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

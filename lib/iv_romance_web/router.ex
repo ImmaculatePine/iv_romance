@@ -38,6 +38,8 @@ defmodule IvRomanceWeb.Router do
     resources("/galleries", GalleryController, except: [:show]) do
       resources("/images", ImageController, only: [:index])
     end
+
+    resources("/media", MediaObjectController, except: [:show])
   end
 
   scope "/api/admin", IvRomanceWeb.Admin, as: :api_admin do

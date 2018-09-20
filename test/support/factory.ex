@@ -4,6 +4,7 @@ defmodule IvRomance.Factory do
   alias IvRomance.Content.Page
   alias IvRomance.Photo.{Gallery, Image}
   alias IvRomance.Admin.Auth.User
+  alias IvRomance.Media.Object, as: MediaObject
 
   def page_factory do
     %Page{
@@ -25,6 +26,21 @@ defmodule IvRomance.Factory do
       gallery: build(:gallery),
       filename: sequence(:filename, &"image-#{&1}.png"),
       position: sequence(:position, & &1)
+    }
+  end
+
+  def media_object_factory do
+    descriptor = sequence(:descriptor, &"media-object-#{&1}")
+
+    embed_code =
+      ~s(<iframe src="https://api.soundcloud.com/tracks/#{descriptor}&color=%23ff5500"></iframe>)
+
+    %MediaObject{
+      provider: "sound_cloud",
+      type: "track",
+      descriptor: descriptor,
+      embed_code: embed_code,
+      title: sequence(:title, &"Media object #{&1}")
     }
   end
 

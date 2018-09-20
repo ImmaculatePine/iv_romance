@@ -10,6 +10,7 @@ defmodule IvRomance.Admin.Content.PagesTest do
   describe "list_pages/0" do
     test "returns list of existing pages" do
       page = insert(:page)
+
       assert Content.list_pages() == [page]
     end
   end
@@ -17,6 +18,7 @@ defmodule IvRomance.Admin.Content.PagesTest do
   describe "get_page!/1" do
     test "returns the page with given id" do
       %{id: id} = page = insert(:page)
+
       assert Content.get_page!(id) == page
     end
 
@@ -68,15 +70,17 @@ defmodule IvRomance.Admin.Content.PagesTest do
   end
 
   describe "update_page/2" do
-    test "udates the page with valid data" do
+    test "updates the page with valid data" do
       %{id: id} = page = insert(:page)
       %{path: path, title: title, body: body} = params = params_for(:page)
+
       assert {:ok, page} = Content.update_page(page, params)
       assert %Page{id: ^id, path: ^path, title: ^title, body: ^body} = page
     end
 
     test "returns errors changeset with invalid data" do
       %{id: id} = page = insert(:page)
+
       assert {:error, %Changeset{}} = Content.update_page(page, %{path: ""})
       assert page == Content.get_page!(id)
     end
@@ -85,6 +89,7 @@ defmodule IvRomance.Admin.Content.PagesTest do
   describe "delete_page/1" do
     test "deletes the page" do
       %{id: id} = page = insert(:page)
+
       assert {:ok, %Page{}} = Content.delete_page(page)
       assert_raise NoResultsError, fn -> Content.get_page!(id) end
     end
@@ -93,6 +98,7 @@ defmodule IvRomance.Admin.Content.PagesTest do
   describe "change_page/1" do
     test "returns a page changeset" do
       page = insert(:page)
+
       assert %Changeset{} = Content.change_page(page)
     end
   end
