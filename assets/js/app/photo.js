@@ -9,7 +9,8 @@ if (grid) {
     new Masonry(grid, {
       itemSelector: '.grid-item',
       columnWidth: 250,
-      gutter: 10
+      gutter: 10,
+      horizontalOrder: true
     })
 
     new SimpleLightbox({ elements: '.grid a' })

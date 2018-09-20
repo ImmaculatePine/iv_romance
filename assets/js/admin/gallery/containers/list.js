@@ -8,7 +8,8 @@ import Image from './image'
 const masonryOptions = {
   itemSelector: '.gallery-image',
   columnWidth: 250,
-  gutter: 10
+  gutter: 10,
+  horizontalOrder: true
 }
 const imagesLoadedOptions = {}
 
