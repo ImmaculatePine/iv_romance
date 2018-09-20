@@ -7,35 +7,48 @@ import { createImage } from '../actions/images'
 
 export class Uploader extends Component {
   static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
     imagesCount: PropTypes.number.isRequired,
     createImage: PropTypes.func.isRequired
   }
 
   render() {
+    const { isLoading, imagesCount } = this.props
     return (
       <div className="level">
         <div className="level-left">
           <div className="level-item">
             <div className="field">
               <div className="control">
-                <div className="file">
-                  <label className="file-label">
-                    <input
-                      className="file-input"
-                      type="file"
-                      onChange={e => this.handleChange(e.target.files)}
-                    />
-                    <span className="file-cta">
-                      <span className="file-label">Choose a file...</span>
-                    </span>
-                  </label>
-                </div>
+                {isLoading ? this._renderLoader() : this._renderUploadButton()}
               </div>
             </div>
           </div>
+          <div className="level-item">{imagesCount} images</div>
         </div>
       </div>
     )
+  }
+
+  _renderUploadButton() {
+    return (
+      <div className="file is-primary">
+        <label className="file-label">
+          <input
+            className="file-input"
+            type="file"
+            onChange={e => this.handleChange(e.target.files)}
+          />
+          <span className="file-cta">
+            <span className="file-label">Add image...</span>
+          </span>
+        </label>
+      </div>
+    )
+  }
+
+  _renderLoader() {
+    return <div>Loading...</div>
   }
 
   handleChange(files) {
@@ -49,6 +62,7 @@ export class Uploader extends Component {
 }
 
 const mapStateToProps = state => ({
+  isLoading: state.isLoading,
   imagesCount: getImagesCount(state)
 })
 
