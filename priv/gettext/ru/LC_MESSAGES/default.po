@@ -45,6 +45,7 @@ msgstr "Контакты"
 
 #, elixir-format
 #: lib/iv_romance_web/templates/layout/app.html.eex:41
+#: lib/iv_romance_web/templates/media_object/index.html.eex:1
 msgid "Media"
 msgstr "Медиа"
 
@@ -59,6 +60,7 @@ msgid "Participants"
 msgstr "Участники"
 
 #, elixir-format
+#: lib/iv_romance_web/templates/gallery/index.html.eex:1
 #: lib/iv_romance_web/templates/layout/app.html.eex:40
 msgid "Photo"
 msgstr "Фото"
