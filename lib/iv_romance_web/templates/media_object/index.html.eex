@@ -1,0 +1,8 @@
+<h1 class="title"><%= gettext("Media") %></h1>
+
+<div class="content">
+  <%= for %{provider: provider, type: type} = media_object <- @media_objects do %>
+    <%= render "#{provider}/#{type}.html", %{media_object: media_object} %>
+    <br /><br />
+  <% end %>
+</div>

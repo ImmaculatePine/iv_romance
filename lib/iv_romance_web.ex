@@ -30,6 +30,7 @@ defmodule IvRomanceWeb do
     quote do
       use Phoenix.View,
         root: "lib/iv_romance_web/templates",
+        pattern: "**/*",
         namespace: IvRomanceWeb
 
       # Import convenience functions from controllers

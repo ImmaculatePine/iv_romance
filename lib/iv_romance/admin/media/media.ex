@@ -1,7 +1,7 @@
 defmodule IvRomance.Admin.Media do
   import Ecto.Query, warn: false
-  alias IvRomance.Repo
 
+  alias IvRomance.Repo
   alias IvRomance.Media.Object, as: MediaObject
 
   def list_media_objects, do: Repo.all(MediaObject)
