@@ -35,6 +35,9 @@ config :iv_romance, IvRomance.Uploads.S3,
   bucket: System.get_env("UPLOADS_S3_BUCKET"),
   adapter: IvRomance.Uploads.S3.Adapter.Aws
 
+# Configure Google Analytics
+config :iv_romance, :google_analytics, tracking_id: System.get_env("GOOGLE_ANALYTICS_TRACKING_ID")
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
