@@ -1,6 +1,8 @@
 defmodule IvRomanceWeb.ErrorView do
   use IvRomanceWeb, :view
 
+  def render("error.json", %{error: error}), do: %{error: error}
+
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
   # def render("500.html", _assigns) do

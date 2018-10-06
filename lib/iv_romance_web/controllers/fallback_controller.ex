@@ -18,9 +18,9 @@ defmodule IvRomanceWeb.FallbackController do
     |> render(IvRomanceWeb.ErrorView, :"404")
   end
 
-  def call(conn, {:error, _}) do
+  def call(conn, {:error, error}) do
     conn
-    |> put_status(:unprocessable_entity)
-    |> render(IvRomanceWeb.ErrorView, :"422")
+    |> put_status(:internal_server_error)
+    |> render(IvRomanceWeb.ErrorView, "error.json", error: error)
   end
 end

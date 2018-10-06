@@ -105,9 +105,9 @@ defmodule IvRomanceWeb.Admin.ImageControllerTest do
                conn
                |> put_req_header("accept", "application/json")
                |> post(api_admin_gallery_image_path(conn, :create, gallery), image: params)
-               |> json_response(422)
+               |> json_response(500)
 
-      assert response == "Unprocessable Entity"
+      assert response == %{"error" => "invalid_file"}
     end
   end
 
