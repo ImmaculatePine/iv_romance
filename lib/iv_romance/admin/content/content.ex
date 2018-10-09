@@ -18,7 +18,12 @@ defmodule IvRomance.Admin.Content do
 
   """
   def list_pages do
-    Repo.all(Page)
+    Repo.all(
+      from(
+        Page,
+        order_by: [asc: :path]
+      )
+    )
   end
 
   @doc """

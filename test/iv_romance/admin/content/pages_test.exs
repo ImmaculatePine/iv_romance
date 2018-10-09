@@ -8,10 +8,11 @@ defmodule IvRomance.Admin.Content.PagesTest do
   alias Ecto.{Changeset, NoResultsError, UUID}
 
   describe "list_pages/0" do
-    test "returns list of existing pages" do
-      page = insert(:page)
+    test "returns list of existing pages sorted by path" do
+      page_1 = insert(:page, path: "/bbb")
+      page_2 = insert(:page, path: "/aaa")
 
-      assert Content.list_pages() == [page]
+      assert Content.list_pages() == [page_2, page_1]
     end
   end
 
