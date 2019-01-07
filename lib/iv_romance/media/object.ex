@@ -2,9 +2,9 @@ defmodule IvRomance.Media.Object do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias IvRomance.Media.SoundCloud
+  alias IvRomance.Media.Parser
 
-  @providers ~w(sound_cloud)
+  @providers ~w(sound_cloud youtube)
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -40,13 +40,7 @@ defmodule IvRomance.Media.Object do
   defp maybe_parse_embed_code(nil, changeset), do: changeset
 
   defp maybe_parse_embed_code(embed_code, changeset) do
-    with {type, descriptor} <- SoundCloud.parse(embed_code) do
-      attrs = %{
-        provider: "sound_cloud",
-        type: Atom.to_string(type),
-        descriptor: descriptor
-      }
-
+    with %{} = attrs <- Parser.to_attrs(embed_code) do
       cast(changeset, attrs, ~w(provider type descriptor))
     else
       nil -> changeset

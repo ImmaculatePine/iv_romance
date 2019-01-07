@@ -15,6 +15,8 @@ defmodule IvRomanceWeb.MediaObjectControllerTest do
 
       %{descriptor: track_id} = insert(:media_object, provider: "sound_cloud", type: "track")
 
+      %{descriptor: video_id} = insert(:media_object, provider: "youtube", type: "video")
+
       response =
         conn
         |> get(media_object_path(conn, :index))
@@ -22,6 +24,7 @@ defmodule IvRomanceWeb.MediaObjectControllerTest do
 
       assert response =~ playlist_id
       assert response =~ track_id
+      assert response =~ video_id
     end
   end
 end
