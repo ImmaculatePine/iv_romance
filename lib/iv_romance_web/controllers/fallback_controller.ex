@@ -9,18 +9,21 @@ defmodule IvRomanceWeb.FallbackController do
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> render(IvRomanceWeb.ChangesetView, "error.json", changeset: changeset)
+    |> put_view(IvRomanceWeb.ChangesetView)
+    |> render("error.json", changeset: changeset)
   end
 
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> render(IvRomanceWeb.ErrorView, :"404")
+    |> put_view(IvRomanceWeb.ErrorView)
+    |> render(:"404")
   end
 
   def call(conn, {:error, error}) do
     conn
     |> put_status(:internal_server_error)
-    |> render(IvRomanceWeb.ErrorView, "error.json", error: error)
+    |> put_view(IvRomanceWeb.ErrorView)
+    |> render("error.json", error: error)
   end
 end
