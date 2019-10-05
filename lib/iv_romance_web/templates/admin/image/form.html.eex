@@ -1,4 +1,4 @@
-<%= form_for @conn, admin_gallery_image_path(@conn, :create, @gallery), [as: :image, multipart: true], fn f -> %>
+<%= form_for @conn, api_admin_gallery_image_path(@conn, :create, @gallery), [as: :image, multipart: true], fn f -> %>
   <div class="field is-grouped">
     <div class="control">
       <div class="file">

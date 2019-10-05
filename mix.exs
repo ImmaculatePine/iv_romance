@@ -50,7 +50,7 @@ defmodule IvRomance.Mixfile do
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
       {:arc, "~> 0.10.0"},
-      {:ex_machina, "~> 2.2", only: :test},
+      {:ex_machina, "~> 2.3", only: :test},
       {:mox, "~> 0.4", only: :test}
     ]
   end
