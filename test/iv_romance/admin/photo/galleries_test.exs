@@ -12,9 +12,12 @@ defmodule IvRomance.Admin.Photo.GalleriesTest do
       assert Photo.list_galleries() == []
     end
 
-    test "returns existing galleries" do
-      gallery = insert(:gallery)
-      assert Photo.list_galleries() == [gallery]
+    test "returns existing galleries with preloaded number of images" do
+      %{gallery: gallery} = insert(:image)
+      %{id: id, title: title, subtitle: subtitle} = gallery
+
+      assert [%{id: ^id, title: ^title, subtitle: ^subtitle, images_count: 1}] =
+               Photo.list_galleries()
     end
   end
 

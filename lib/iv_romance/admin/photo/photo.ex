@@ -5,7 +5,14 @@ defmodule IvRomance.Admin.Photo do
   alias IvRomance.Admin.Photo.Uploader
   alias IvRomance.Photo.{Gallery, Image}
 
-  def list_galleries, do: Repo.all(Gallery)
+  def list_galleries do
+    from(gallery in Gallery,
+      left_join: image in assoc(gallery, :images),
+      group_by: gallery.id,
+      select: %{gallery | images_count: count(image.id)}
+    )
+    |> Repo.all()
+  end
 
   def get_gallery!(id), do: Repo.one!(from(Gallery, where: [id: ^id]))
 
