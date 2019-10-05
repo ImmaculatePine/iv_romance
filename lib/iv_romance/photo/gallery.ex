@@ -10,6 +10,7 @@ defmodule IvRomance.Photo.Gallery do
   schema "galleries" do
     field(:title, :string)
     field(:subtitle, :string)
+    field(:images_count, :integer, virtual: true, default: 0)
 
     has_many(:images, Image, on_delete: :delete_all)
 

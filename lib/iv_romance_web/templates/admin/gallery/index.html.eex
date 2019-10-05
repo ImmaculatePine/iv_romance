@@ -13,6 +13,7 @@
     <tr>
       <th>Title</th>
       <th>Subtitle</th>
+      <th>Images count</th>
 
       <th></th>
     </tr>
@@ -22,6 +23,7 @@
     <tr>
       <td><%= gallery.title %></td>
       <td><%= gallery.subtitle %></td>
+      <td><%= gallery.images_count %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: admin_gallery_image_path(@conn, :index, gallery), class: "button is-default is-small" %></span>
