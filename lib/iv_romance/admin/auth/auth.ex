@@ -6,8 +6,8 @@ defmodule IvRomance.Admin.Auth do
   import Ecto.Query, warn: false
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
-  alias IvRomance.Repo
   alias IvRomance.Admin.Auth.User
+  alias IvRomance.Repo
 
   @doc """
   Gets a single user.

@@ -1,8 +1,8 @@
 defmodule IvRomanceWeb.Admin.ImageController do
   use IvRomanceWeb, :controller
 
-  alias IvRomance.Admin.Photo
   alias IvRomance.Admin.Auth.Token
+  alias IvRomance.Admin.Photo
   alias IvRomance.Photo.Image
 
   action_fallback(IvRomanceWeb.FallbackController)

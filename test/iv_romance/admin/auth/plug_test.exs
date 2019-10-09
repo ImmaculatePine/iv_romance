@@ -6,8 +6,8 @@ defmodule IvRomance.Admin.Auth.PlugTest do
 
   alias Ecto.UUID
   alias IvRomance.Admin.Auth
-  alias IvRomance.Admin.Auth.Token
   alias IvRomance.Admin.Auth.Plug, as: AuthPlug
+  alias IvRomance.Admin.Auth.Token
 
   describe "call/2, source: :session" do
     test "does nothing when user is already assigned", %{conn: conn} do

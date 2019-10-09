@@ -3,7 +3,7 @@ defmodule IvRomance.Admin.Auth.Plug do
   import Phoenix.Controller
 
   alias IvRomance.Admin.Auth
-  alias IvRomance.Admin.Auth.{User, Token}
+  alias IvRomance.Admin.Auth.{Token, User}
   alias IvRomanceWeb.Router.Helpers, as: RouterHelpers
 
   @regexp_token Regex.compile!("^Bearer (.*)$")

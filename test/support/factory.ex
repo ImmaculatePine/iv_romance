@@ -1,10 +1,10 @@
 defmodule IvRomance.Factory do
   use ExMachina.Ecto, repo: IvRomance.Repo
 
-  alias IvRomance.Content.Page
-  alias IvRomance.Photo.{Gallery, Image}
   alias IvRomance.Admin.Auth.User
+  alias IvRomance.Content.Page
   alias IvRomance.Media.Object, as: MediaObject
+  alias IvRomance.Photo.{Gallery, Image}
 
   def page_factory do
     %Page{

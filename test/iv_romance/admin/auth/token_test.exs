@@ -1,8 +1,8 @@
 defmodule IvRomance.Admin.Auth.TokenTest do
   use IvRomance.DataCase, async: true
 
-  alias IvRomance.Admin.Auth.Token
   alias Ecto.UUID
+  alias IvRomance.Admin.Auth.Token
 
   describe "sign/1, verify/1" do
     test "encodes and decodes values" do

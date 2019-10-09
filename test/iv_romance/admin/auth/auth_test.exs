@@ -3,9 +3,9 @@ defmodule IvRomance.Admin.AuthTest do
 
   import IvRomance.Factory
 
+  alias Ecto.Changeset
   alias IvRomance.Admin.Auth
   alias IvRomance.Admin.Auth.User
-  alias Ecto.Changeset
 
   describe "get_user/1" do
     test "returns a user by id" do

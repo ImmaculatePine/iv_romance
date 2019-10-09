@@ -3,10 +3,10 @@ defmodule IvRomance.Admin.Photo.UploaderTest do
 
   import IvRomance.Factory
 
-  alias IvRomance.Repo
+  alias Ecto.{NoResultsError, UUID}
   alias IvRomance.Admin.Photo
   alias IvRomance.Photo.Image
-  alias Ecto.{NoResultsError, UUID}
+  alias IvRomance.Repo
 
   setup do
     on_exit(fn ->
