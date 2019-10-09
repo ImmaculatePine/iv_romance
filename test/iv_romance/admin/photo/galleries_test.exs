@@ -3,9 +3,9 @@ defmodule IvRomance.Admin.Photo.GalleriesTest do
 
   import IvRomance.Factory
 
-  alias IvRomance.Photo.Gallery
-  alias IvRomance.Admin.Photo
   alias Ecto.{Changeset, NoResultsError, UUID}
+  alias IvRomance.Admin.Photo
+  alias IvRomance.Photo.Gallery
 
   describe "list_galleries/0" do
     test "returns empty list when there are no galleries" do

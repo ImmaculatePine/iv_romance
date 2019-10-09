@@ -5,8 +5,8 @@ defmodule IvRomance.Content do
 
   import Ecto.Query, warn: false
 
-  alias IvRomance.Repo
   alias IvRomance.Content.Page
+  alias IvRomance.Repo
 
   @doc """
   Gets a single page by its path.

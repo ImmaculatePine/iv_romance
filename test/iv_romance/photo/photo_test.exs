@@ -3,8 +3,8 @@ defmodule IvRomance.PhotoTest do
 
   import IvRomance.Factory
 
+  alias Ecto.{NoResultsError, UUID}
   alias IvRomance.Photo
-  alias Ecto.{UUID, NoResultsError}
 
   describe "list_galleries/0" do
     test "returns empty list when there are no galleries" do

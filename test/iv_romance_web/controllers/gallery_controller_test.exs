@@ -3,8 +3,8 @@ defmodule IvRomanceWeb.GalleryControllerTest do
 
   import IvRomance.Factory
 
-  alias IvRomanceWeb.GalleryView
   alias Ecto.UUID
+  alias IvRomanceWeb.GalleryView
 
   describe "index" do
     test "lists all galleries", %{conn: conn} do
