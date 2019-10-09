@@ -9,9 +9,8 @@ defmodule IvRomanceWeb.PageView do
   end
 
   defp to_markdown(body) do
-    with {:ok, markdown, []} <- Earmark.as_html(body) do
-      markdown
-    else
+    case Earmark.as_html(body) do
+      {:ok, markdown, []} -> markdown
       _ -> body
     end
   end

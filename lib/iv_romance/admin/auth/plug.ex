@@ -60,9 +60,8 @@ defmodule IvRomance.Admin.Auth.Plug do
   def decode_token(nil), do: nil
 
   def decode_token(token) do
-    with {:ok, user_id} <- Token.verify(token) do
-      user_id
-    else
+    case Token.verify(token) do
+      {:ok, user_id} -> user_id
       _ -> nil
     end
   end

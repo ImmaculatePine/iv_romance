@@ -12,9 +12,8 @@ defmodule IvRomance.Media.Parser do
   defp maybe_parse_sound_cloud({:ok, result}), do: {:ok, result}
 
   defp maybe_parse_sound_cloud(embed_code) do
-    with {type, descriptor} <- SoundCloud.parse(embed_code) do
-      {:ok, {"sound_cloud", type, descriptor}}
-    else
+    case SoundCloud.parse(embed_code) do
+      {type, descriptor} -> {:ok, {"sound_cloud", type, descriptor}}
       _ -> embed_code
     end
   end
@@ -22,9 +21,8 @@ defmodule IvRomance.Media.Parser do
   defp maybe_parse_youtube({:ok, result}), do: {:ok, result}
 
   defp maybe_parse_youtube(embed_code) do
-    with {type, descriptor} <- Youtube.parse(embed_code) do
-      {:ok, {"youtube", type, descriptor}}
-    else
+    case Youtube.parse(embed_code) do
+      {type, descriptor} -> {:ok, {"youtube", type, descriptor}}
       _ -> embed_code
     end
   end

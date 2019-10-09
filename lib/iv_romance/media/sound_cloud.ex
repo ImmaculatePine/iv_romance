@@ -3,25 +3,22 @@ defmodule IvRomance.Media.SoundCloud do
   @playlist_regexp ~r/.+api\.soundcloud\.com\/playlists\/(.+)\&.+/U
 
   def parse(embed_code) do
-    with {type, id} <- parse_track(embed_code) || parse_playlist(embed_code) do
-      {type, id}
-    else
+    case parse_track(embed_code) || parse_playlist(embed_code) do
+      {type, id} -> {type, id}
       _ -> nil
     end
   end
 
   def parse_track(embed_code) do
-    with [_, playlist_id] <- Regex.run(@track_regexp, embed_code) do
-      {:track, playlist_id}
-    else
+    case Regex.run(@track_regexp, embed_code) do
+      [_, playlist_id] -> {:track, playlist_id}
       _ -> nil
     end
   end
 
   def parse_playlist(embed_code) do
-    with [_, playlist_id] <- Regex.run(@playlist_regexp, embed_code) do
-      {:playlist, playlist_id}
-    else
+    case Regex.run(@playlist_regexp, embed_code) do
+      [_, playlist_id] -> {:playlist, playlist_id}
       _ -> nil
     end
   end

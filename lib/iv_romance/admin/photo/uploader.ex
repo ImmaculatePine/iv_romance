@@ -25,7 +25,7 @@ defmodule IvRomance.Admin.Photo.Uploader do
   end
 
   def delete_image(%Image{filename: filename} = image) do
-    with :ok = delete_file(filename, image),
+    with :ok <- delete_file(filename, image),
          {:ok, image} <- delete_record(image) do
       {:ok, image}
     end

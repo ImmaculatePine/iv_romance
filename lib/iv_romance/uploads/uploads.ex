@@ -2,9 +2,8 @@ defmodule IvRomance.Uploads do
   alias IvRomance.Uploads.S3
 
   def list_uploads do
-    with {:ok, uploads} <- S3.list() do
-      uploads
-    else
+    case S3.list() do
+      {:ok, uploads} -> uploads
       _ -> []
     end
   end

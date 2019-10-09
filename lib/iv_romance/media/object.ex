@@ -40,10 +40,12 @@ defmodule IvRomance.Media.Object do
   defp maybe_parse_embed_code(nil, changeset), do: changeset
 
   defp maybe_parse_embed_code(embed_code, changeset) do
-    with %{} = attrs <- Parser.to_attrs(embed_code) do
-      cast(changeset, attrs, ~w(provider type descriptor))
-    else
-      nil -> changeset
+    case Parser.to_attrs(embed_code) do
+      %{} = attrs ->
+        cast(changeset, attrs, ~w(provider type descriptor))
+
+      nil ->
+        changeset
     end
   end
 end
