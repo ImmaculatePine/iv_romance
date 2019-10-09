@@ -1,7 +1,7 @@
 defmodule IvRomance.Admin.Auth.Token do
   @secret Application.get_env(:iv_romance, __MODULE__)[:secret]
   @salt Application.get_env(:iv_romance, __MODULE__)[:salt]
-  @max_age 86400
+  @max_age 86_400
 
   def sign(user_id), do: Phoenix.Token.sign(@secret, @salt, user_id)
 

@@ -51,7 +51,8 @@ defmodule IvRomance.Mixfile do
       {:sweet_xml, "~> 0.6"},
       {:arc, "~> 0.10.0"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:mox, "~> 0.4", only: :test}
+      {:mox, "~> 0.4", only: :test},
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
