@@ -29,6 +29,9 @@ config :iv_romance, IvRomance.Admin.Auth.Token,
   secret: System.get_env("AUTH_TOKEN_SECRET"),
   salt: System.get_env("AUTH_TOKEN_SALT")
 
+# Heroku requires SSL for Postgres
+config :iv_romance, IvRomance.Repo, ssl: true
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
